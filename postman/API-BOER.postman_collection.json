@@ -1,0 +1,187 @@
+{
+  "info": {
+    "_postman_id": "5025c84e-957e-4c07-af5c-d69247bdab68",
+    "name": "API BOER",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47051635",
+    "_collection_link": "https://go.postman.co/collection/47051635-5025c84e-957e-4c07-af5c-d69247bdab68?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "listaProdutos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-token",
+            "value": "teste123",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3333/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3333",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "listaProdutoID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-token",
+            "value": "teste123",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3333/api/products/SEU_ID_AQUI",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3333",
+          "path": [
+            "api",
+            "products",
+            "SEU_ID_AQUI"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "cadastraProduto",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-token",
+            "value": "teste123",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Bolo de Cenoura\",\r\n  \"price\": 29.9,\r\n  \"category\": \"Doces\",\r\n  \"imageUrl\": \"https://exemplo.com/bolo.jpg\",\r\n  \"costPrice\": 15.0,\r\n  \"description\": \"Bolo caseiro\",\r\n  \"marginPercent\": 99.33\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3333/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3333",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "alteraProduto",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-api-token",
+            "value": "teste123",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Bolo de Cenoura Premium\",\r\n  \"price\": 34.9,\r\n  \"category\": \"Doces\",\r\n  \"imageUrl\": \"https://exemplo.com/bolo-premium.jpg\",\r\n  \"costPrice\": 17.0,\r\n  \"description\": \"Com cobertura especial\",\r\n  \"marginPercent\": 105.29\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3333/api/products/SEU_ID_AQUI",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3333",
+          "path": [
+            "api",
+            "products",
+            "SEU_ID_AQUI"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deletaProduto",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-token",
+            "value": "teste123",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3333/api/products/SEU_ID_AQUI",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3333",
+          "path": [
+            "api",
+            "products",
+            "SEU_ID_AQUI"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-token",
+            "value": "teste123",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3333/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3333",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
