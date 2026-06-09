@@ -7,7 +7,7 @@ Aplicativo em Expo/React Native com backend Node.js e Firebase para cadastro, li
 A colecao do Postman desta API esta versionada no repositorio e pode ser importada diretamente:
 
 - Arquivo da colecao: [postman/API-BOER.postman_collection.json](postman/API-BOER.postman_collection.json)
-- Opcao para baixar e importar no Postman: abra o arquivo no GitHub e use `Download raw file` ou copie o JSON bruto para importar manualmente
+- Quem quiser pode baixar o arquivo no GitHub, copiar o JSON bruto e importar manualmente no Postman
 
 ### Como importar
 
@@ -15,8 +15,6 @@ A colecao do Postman desta API esta versionada no repositorio e pode ser importa
 2. Clique em `Import`.
 3. Escolha o arquivo [postman/API-BOER.postman_collection.json](postman/API-BOER.postman_collection.json).
 4. Importe a colecao `API BOER`.
-
-Tambem e possivel abrir o JSON bruto, copiar o conteudo e importar no Postman pela opcao de texto bruto.
 
 ## Como rodar o projeto
 
@@ -39,48 +37,44 @@ O backend sobe por padrao em `http://localhost:3333`.
 
 ## Configuracao do backend
 
-Crie um arquivo `.env` dentro de `backend/` com os dados necessarios:
+Crie um arquivo `.env` dentro de `backend/` com os dados abaixo e preencha com as suas configuracoes:
 
 ```env
 PORT=3333
-API_TOKEN=teste123
-FIREBASE_DATABASE_URL=sua_url_do_firebase
+API_TOKEN=PREENCHA_O_TOKEN_DA_API
+FIREBASE_DATABASE_URL=PREENCHA_A_URL_DO_FIREBASE
 GOOGLE_APPLICATION_CREDENTIALS=./serviceAccountKey.json
 ```
 
+Preencha tambem o arquivo [src/services/connectionFirebase.ts](src/services/connectionFirebase.ts) com os dados do seu projeto Firebase.
+
 Importante:
 
-- O valor de `API_TOKEN` precisa bater com o token enviado na colecao do Postman.
+- Nao deixe credenciais reais versionadas no repositorio.
+- O valor de `API_TOKEN` deve ser o mesmo usado nas requisicoes.
 - O arquivo `serviceAccountKey.json` deve existir em `backend/` ou o caminho deve ser ajustado na variavel `GOOGLE_APPLICATION_CREDENTIALS`.
 
-## Como usar a colecao
+## Endpoints da API
 
-Todas as rotas protegidas usam o header abaixo:
+### Listar produtos
 
-```http
-x-api-token: teste123
-```
+GET: `http://localhost:3333/api/products`
 
-Base URL:
+HEADER: `x-api-token: VALOR`
 
-```text
-http://localhost:3333
-```
+### Buscar produto por ID
 
-### Endpoints incluidos
+GET: `http://localhost:3333/api/products/SEU_ID_AQUI`
 
-| Nome no Postman | Metodo | Rota | Descricao |
-| --- | --- | --- | --- |
-| `listaProdutos` | `GET` | `/api/products` | Lista todos os produtos |
-| `listaProdutoID` | `GET` | `/api/products/:id` | Busca um produto por ID |
-| `cadastraProduto` | `POST` | `/api/products` | Cadastra um novo produto |
-| `alteraProduto` | `PUT` | `/api/products/:id` | Atualiza um produto existente |
-| `deletaProduto` | `DELETE` | `/api/products/:id` | Remove um produto |
-| `health` | `GET` | `/health` | Verifica se o backend esta online |
+HEADER: `x-api-token: VALOR`
 
-## Exemplo de payload
+### Cadastrar produto
 
-Para criar ou editar um produto, a colecao usa um JSON neste formato:
+POST: `http://localhost:3333/api/products`
+
+HEADER: `x-api-token: VALOR`
+
+BODY:
 
 ```json
 {
@@ -94,8 +88,41 @@ Para criar ou editar um produto, a colecao usa um JSON neste formato:
 }
 ```
 
-## Observacoes de uso
+### Atualizar produto
+
+PUT: `http://localhost:3333/api/products/SEU_ID_AQUI`
+
+HEADER: `x-api-token: VALOR`
+
+BODY:
+
+```json
+{
+  "name": "Bolo de Cenoura Premium",
+  "price": 34.9,
+  "category": "Doces",
+  "imageUrl": "https://exemplo.com/bolo-premium.jpg",
+  "costPrice": 17.0,
+  "description": "Com cobertura especial",
+  "marginPercent": 105.29
+}
+```
+
+### Excluir produto
+
+DELETE: `http://localhost:3333/api/products/SEU_ID_AQUI`
+
+HEADER: `x-api-token: VALOR`
+
+### Health check
+
+GET: `http://localhost:3333/health`
+
+HEADER: `nao obrigatorio`
+
+## Observacoes
 
 - Nas rotas com `SEU_ID_AQUI`, substitua pelo ID real do produto antes de enviar a requisicao.
-- Se quiser compartilhar a API com outra pessoa, basta enviar o arquivo da colecao que esta em `postman/API-BOER.postman_collection.json`.
+- O endpoint `/health` existe para verificar se o backend esta online.
+- Se quiser compartilhar a API com outra pessoa, basta enviar o arquivo da colecao em `postman/API-BOER.postman_collection.json`.
 - Quem receber o arquivo pode importar normalmente no Postman sem precisar montar as requisicoes manualmente.
